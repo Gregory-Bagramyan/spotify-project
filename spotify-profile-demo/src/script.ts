@@ -1,4 +1,6 @@
-const clientId = "your-client-id-here"; // Replace with your client id
+import myClientId from './key.ts';
+
+const clientId = myClientId ; // Replace with your client id
 const code = undefined;
 
 if (!code) {
