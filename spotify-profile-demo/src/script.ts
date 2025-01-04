@@ -1,7 +1,9 @@
 import myClientId from './key.ts';
+import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 
 const clientId = myClientId ; // Replace with your client id
-const code = undefined;
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
 
 if (!code) {
     redirectToAuthCodeFlow(clientId);
@@ -9,14 +11,6 @@ if (!code) {
     const accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
     populateUI(profile);
-}
-
-async function redirectToAuthCodeFlow(clientId: string) {
-    // TODO: Redirect to Spotify authorization page
-}
-
-async function getAccessToken(clientId: string, code: string) {
-  // TODO: Get access token for code
 }
 
 async function fetchProfile(token: string): Promise<any> {
